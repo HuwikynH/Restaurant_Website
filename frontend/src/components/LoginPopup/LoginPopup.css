@@ -1,0 +1,158 @@
+@import url("../../variables.css");
+
+.login-popup {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: #00000090;
+  display: grid;
+}
+
+.login-popup-container {
+  place-self: center;
+  width: max(25vw, 330px);
+  background-color: var(--bg-header-color);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  animation: fadeIn 0.5s;
+}
+
+.login-popup-container .close-icon {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 40px;
+  cursor: pointer;
+  margin-left: 90%;
+}
+
+.login-popup-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-popup-title h2 {
+  text-transform: uppercase;
+  text-align: center;
+  color: black;
+}
+
+.login-popup-title p {
+  text-align: center;
+  color: black;
+  font-size: 15px;
+}
+
+.login-popup-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-popup-inputs input {
+  outline: none;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.login-popup-container button {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--gray-color);
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.login-popup-condition {
+  display: flex;
+  align-self: start;
+  gap: 8px;
+  margin-top: -15px;
+}
+
+.login-popup-condition input {
+  margin-bottom: 35px;
+}
+
+.login-popup p span {
+  color: var(--gray-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-popup .auth-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-popup .auth-switch span {
+  margin-left: 5px;
+}
+
+.social-login-buttons {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-login-buttons a {
+  text-decoration: none;
+}
+
+.social-login-buttons button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px; /* Bo tròn góc */
+  cursor: pointer;
+  font-size: 16px;
+  color: white; /* Chữ màu trắng */
+}
+
+.social-login-buttons a:nth-child(1) button {
+  /* Facebook button */
+  background-color: #3b5998; /* Màu xanh Facebook */
+}
+
+.social-login-buttons a:nth-child(2) button {
+  /* Google button */
+  background-color: #dd4b39; /* Màu đỏ Google */
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

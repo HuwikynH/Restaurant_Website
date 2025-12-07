@@ -1,0 +1,10 @@
+@import url("../../variables.css");
+
+.explore-more-wrapper {
+    margin-top: 30px;
+}
+
+.explore-more-wrapper h2 {
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}

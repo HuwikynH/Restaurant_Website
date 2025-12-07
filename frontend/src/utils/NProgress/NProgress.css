@@ -1,0 +1,14 @@
+@import url("../../variables.css");
+
+#nprogress .bar {
+    background: var(--gray-color) !important;
+    height: 3px !important;
+}
+
+#nprogress .peg {
+    box-shadow: 0 0 10px var(--gray-color), 0 0 5px var(--gray-color);
+}
+
+#nprogress .spinner {
+    display: none !important;
+}

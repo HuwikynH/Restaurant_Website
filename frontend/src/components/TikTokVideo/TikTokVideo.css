@@ -1,0 +1,25 @@
+@import url("../../BlogVariables.css");
+
+/* TikTok Video */
+.video-tiktok-container {
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.video-tiktok-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.tiktok-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}

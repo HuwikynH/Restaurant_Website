@@ -1,0 +1,8 @@
+@import url("../../variables.css");
+
+.small-line-separator .separator {
+    border: none;
+    height: 5px;
+    background-color: var(--separator-color);
+    margin: 35px auto 35px auto;
+}

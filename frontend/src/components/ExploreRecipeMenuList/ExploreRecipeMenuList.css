@@ -1,0 +1,44 @@
+@import url("../../variables.css");
+
+.explore-recipe-menu-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    margin: 20px 0px;
+    overflow-x: scroll;
+}
+
+.explore-recipe-menu-list {
+    overflow-x: hidden;
+    max-height: 500px;
+}
+
+.explore-recipe-menu-list:hover {
+    overflow-x: auto;
+}
+
+.explore-recipe-menu-list .explore-menu-item {
+    cursor: pointer;
+}
+
+.explore-recipe-menu-list .explore-menu-item img {
+    border-radius: 50%;
+    width: 7.5vw;
+    min-width: 80px;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+    transition: 0.2s;
+}
+
+.explore-recipe-menu-list .explore-menu-item p {
+    margin-top: 10px;
+    font-size: max(1.2vw, 16px);
+}
+
+.explore-recipe-menu-list .explore-menu-item .active {
+    border: 4px solid turquoise;
+    padding: 2px;
+}

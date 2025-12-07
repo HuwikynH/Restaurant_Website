@@ -1,0 +1,49 @@
+@import url("../../BlogVariables.css");
+
+/* Navigation */
+.blog-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.blog-navigation i {
+    font-size: 30px;
+}
+
+.blog-navigation .dieu-huong {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.blog-navigation .dieu-huong::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease-in-out;
+}
+
+.blog-navigation .dieu-huong:hover::after {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .blog-navigation {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

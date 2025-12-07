@@ -1,0 +1,10 @@
+.admin-recipes-wrapper {
+    background-color: #f7f7f9;
+    height: 100vh;
+}
+
+.admin-recipes-wrapper .content {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}

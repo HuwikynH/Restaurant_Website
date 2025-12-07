@@ -1,0 +1,78 @@
+.user-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px; /* mb: 2 */
+  padding-top: 24px; /* pt: 3 */
+}
+
+.user-list-header h2 {
+  font-weight: bold;
+  color: #1a2428; /* Sử dụng màu chữ */
+}
+
+.user-list-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Thêm khoảng cách 16px giữa các item */
+}
+
+.search-field {
+  /* margin-right: 8px; */ /* Bỏ margin-right */
+}
+
+.search-button {
+  background-color: #4a4a48; /* Màu xám */
+  color: white;
+}
+
+.search-button:hover {
+  background-color: #3a3a38; /* Màu xám đậm hơn khi hover */
+}
+
+.create-button {
+  background-color: #24708e; /* Màu chữ chính */
+  color: white;
+  /* margin-left: 250px; */ /* Bỏ margin-left */
+}
+
+.create-button:hover {
+  background-color: #004765; /* Màu đậm hơn khi hover */
+}
+
+.styled-table-head {
+  background-color: #e4e2dd; /* Màu nền header */
+}
+
+.styled-table-head th {
+  color: #1a2428; /* Sử dụng màu chữ */
+  font-weight: bold;
+  padding: 12px 16px; /* Tăng padding */
+}
+
+.styled-table-row:nth-of-type(odd) {
+  background-color: #f5f5f5; /* Màu nền xen kẽ cho hàng */
+}
+
+.styled-table-row td,
+.styled-table-row th {
+  padding: 12px 16px; /* Tăng padding */
+}
+
+.styled-table-row:last-child td,
+.styled-table-row:last-child th {
+  border: 0;
+}
+
+.social-icon {
+  font-size: 25px;
+  margin: 0px 7.5px;
+}
+
+.social-icon.facebook {
+  color: #3b5998;
+}
+
+.social-icon.google {
+  color: #dd4b39;
+}

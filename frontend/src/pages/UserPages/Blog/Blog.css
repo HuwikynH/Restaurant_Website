@@ -1,0 +1,222 @@
+@import url("../../../BlogVariables.css");
+
+/* Layout */
+.blog-main-container {
+    max-width: var(--max-width-website);
+    padding: 0;
+    margin: 10px auto;
+}
+
+.blog-main-container .title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: var(--text-color);
+    width: 100%;
+    display: block;
+}
+
+.tiktok-follow-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 32px auto 16px;
+    color: white;
+    letter-spacing: 1px;
+    max-width: 700px;
+    background-color: #000000;
+    padding: 15px 30px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.tiktok-follow-title:hover {
+    background-color: #808080;
+}
+
+.blog-cta-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.blog-cta-image {
+    flex: 0 0 400px;
+    position: sticky;
+    top: 20px;
+}
+
+.blog-cta-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 30px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.blog-cta-image img:hover {
+    transform: scale(1.05);
+}
+
+.blog-cta-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.blog-cta-content h1 {
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* CTA Button */
+.blog-cta-button {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta-link {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 18px;
+    transition: all var(--transition-speed);
+    border: none;
+    cursor: pointer;
+}
+
+.cta-link:hover {
+    background-color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.blog-cta-container .tiktok-follow-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 32px 0 16px 0;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-cta-container {
+        flex-direction: column;
+    }
+
+    .blog-cta-image {
+        flex: 0 0 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .blog-cta-content {
+        text-align: center;
+    }
+}
+
+.blog-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    padding: 40px 0;
+}
+
+.blog-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.loading,
+.error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.blog-pagination-container {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-container {
+        padding: 0 15px;
+    }
+}
+
+.blog-list-section {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.blog-list-section .loading,
+.blog-list-section .error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.blog-list-section .error {
+    color: #dc3545;
+}
+
+.blog-pagination-container {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.blog-content-section {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.blog-content-section .blog-loading,
+.blog-content-section .blog-error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.blog-content-section .blog-error {
+    color: #dc3545;
+}
+
+.blog-content-section .blog-pagination-wrapper {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}

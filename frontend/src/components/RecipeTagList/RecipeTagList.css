@@ -1,0 +1,26 @@
+@import url("../../variables.css");
+
+.recipe-tag-list-wrapper {
+    flex-wrap: wrap;
+    margin-top: 30px;
+    justify-self: center;
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+    padding: 10px 50px;
+    background-color: var(--bg-header-color);
+    border-radius: 2px;
+}
+
+.recipe-tag-list-wrapper .title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.recipe-tag-list-wrapper .recipe-tag-list {
+    margin-top: 15px;
+    display: flex;
+    column-gap: 15px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+}

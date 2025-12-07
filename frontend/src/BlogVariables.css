@@ -1,0 +1,13 @@
+@import url("./variables.css");
+
+/* Blog Module CSS Variables */
+:root {
+    --primary-color: #4a4a48;
+    --text-color: #111;
+    --secondary-text-color: #555;
+    --border-color: #ddd;
+    --hover-color: #ffece6;
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

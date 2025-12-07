@@ -1,0 +1,6 @@
+.action-button-recipe-table i {
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+    transition: color 0.2s;
+}

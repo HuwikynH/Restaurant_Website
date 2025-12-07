@@ -1,0 +1,43 @@
+@import url("../../../variables.css");
+
+.recipes {
+    padding: 0;
+}
+
+.recipes-background {
+    overflow: hidden;
+    width: 100%;
+    height: 240px;
+    position: relative;
+}
+
+.recipes-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.recipes-body-wrapper {
+    max-width: var(--max-width-website);
+    align-self: center;
+    justify-self: center;
+    padding: 0;
+    margin: 35px;
+}
+
+.recipes-body-wrapper .title {
+    padding: 0px 50px;
+}
+
+.recipes-body-wrapper .title h1 {
+    justify-self: center;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.recipes-body-wrapper .title p {
+    font-size: 17px;
+    justify-self: center;
+    text-align: center;
+}

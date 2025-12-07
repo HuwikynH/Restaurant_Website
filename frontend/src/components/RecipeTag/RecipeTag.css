@@ -1,0 +1,27 @@
+@import url("../../variables.css");
+
+.recipe-tag-wrapper {
+    user-select: none;
+    background-color: white;
+    color: var(--gray-color);
+    width: fit-content;
+    padding: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.recipe-tag-wrapper .nav-link {
+    text-decoration: none;
+}
+
+.recipe-tag-wrapper .name {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.recipe-tag-wrapper:hover {
+    background-color: var(--gray-color);
+    color: white;
+}

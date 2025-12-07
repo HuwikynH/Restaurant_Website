@@ -1,0 +1,154 @@
+.team-member {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  z-index: 1;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.member-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.member-info {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.member-info h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+}
+
+.position {
+  color: #e74c3c;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 20px;
+}
+
+.member-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  justify-content: center;
+}
+
+.contact-item:hover {
+  background: #f1f3f5;
+  transform: translateX(5px);
+}
+
+.contact-item p {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+@media (max-width: 992px) {
+  .team-member {
+    padding: 2rem;
+  }
+
+  .member-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .member-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .position {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-member {
+    padding: 1.5rem;
+  }
+
+  .team-member::before {
+    height: 100px;
+  }
+
+  .member-image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .member-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .position {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .contact-item {
+    padding: 0.7rem;
+  }
+}

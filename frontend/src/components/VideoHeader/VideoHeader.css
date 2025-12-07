@@ -1,0 +1,51 @@
+@import url("../../BlogVariables.css");
+
+/* Video Header */
+.video-blog-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.video-blog-background .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(45, 27, 27, 0.9);
+}
+
+.video-blog-background video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-blog-background .content {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 70px;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video-blog-background .content {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-blog-background .content {
+        font-size: 40px;
+    }
+}

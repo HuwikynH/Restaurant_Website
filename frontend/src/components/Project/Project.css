@@ -1,0 +1,168 @@
+.project-container {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.project-title {
+  font-size: 2.8rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-family: "Playfair Display", serif;
+  position: relative;
+  display: inline-block;
+}
+
+.project-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #e67e22, #f39c12);
+  border-radius: 2px;
+}
+
+.project-description {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.project-description p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.project-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.feature-item {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: #e67e22;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+.feature-item h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.project-cta {
+  margin-top: 60px;
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+  border-radius: 20px;
+  color: white;
+}
+
+.cta-content h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.cta-button {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  background: white;
+  color: #e67e22;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: #2c3e50;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .project-container {
+    padding: 60px 20px;
+  }
+
+  .project-title {
+    font-size: 2.2rem;
+  }
+
+  .project-description p {
+    font-size: 1.1rem;
+  }
+
+  .project-features {
+    grid-template-columns: 1fr;
+  }
+
+  .project-cta {
+    padding: 40px 20px;
+  }
+
+  .cta-content h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,73 @@
+@import url("../../BlogVariables.css");
+
+/* Feedback Section */
+.blog-feedback-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.explore-more {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.explore-more h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.tags a {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color var(--transition-speed);
+}
+
+.tags a:hover {
+    background-color: #b71c1c;
+}
+
+.feedback {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--hover-color);
+    border-radius: var(--border-radius);
+}
+
+.feedback p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feedback-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.feedback-buttons button:hover,
+.feedback-buttons button:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

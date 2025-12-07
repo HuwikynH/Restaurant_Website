@@ -1,0 +1,6 @@
+@import url("../../variables.css");
+
+.trending-title {
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}

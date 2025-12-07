@@ -1,0 +1,52 @@
+.recipe-skeleton-card-wrapper .card {
+    max-height: 300px;
+    max-width: 285px;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.recipe-skeleton-card-wrapper .skeleton-img {
+    height: 200px;
+    width: 100%;
+}
+
+.recipe-skeleton-card-wrapper .card-body {
+    height: 100px;
+    padding: 12px;
+}
+
+.recipe-skeleton-card-wrapper .card-body .card-title {
+    height: 30px;
+    width: 70%;
+    border-radius: 4px;
+}
+
+.recipe-skeleton-card-wrapper .skeleton-img,
+.recipe-skeleton-card-wrapper .card-body .card-title {
+    background-color: #ececec;
+    animation: var(--shimmer-animation);
+    background: linear-gradient(to right, #e0e0e0 8%, #f0f0f0 18%, #e0e0e0 33%);
+    background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f0f0f0;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}

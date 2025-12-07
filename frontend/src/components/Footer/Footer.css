@@ -1,0 +1,134 @@
+@import url("../../variables.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    user-select: none;
+    background-color: var(--bg-header-color);
+    padding-top: 70px;
+    padding-bottom: 0px;
+}
+
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer .footer-col {
+    flex: 1;
+    width: 25%;
+    padding: 0px 15px;
+}
+
+.footer .container .row .footer-col ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.footer .footer-col h4 {
+    font-size: 18px;
+    color: var(--gray-color);
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer .footer-col h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #4a4a48;
+    height: 5px;
+    box-sizing: border-box;
+    width: 50px;
+    border-radius: 20px;
+}
+
+.footer .footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.footer .footer-col ul li .footer-nav-link {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: var(--gray-color);
+    text-decoration: none;
+    font-weight: 350;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.footer .footer-col ul li .footer-nav-link:hover {
+    color: black;
+    padding-left: 10px;
+}
+
+.footer .footer-col .social-icon {
+    display: flex;
+}
+
+.footer .footer-col .social-icon a {
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.footer .footer-col .social-icon a i {
+    font-size: 20px;
+    color: var(--gray-color);
+    opacity: 0.9;
+}
+
+.footer .footer-col .social-icon a:hover {
+    background-color: var(--gray-color);
+    transition: 0.5s;
+}
+
+.footer .footer-col .social-icon a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+.footer .footer-col img {
+    margin-top: 15px;
+    width: 230px;
+}
+
+.footer .footer-bottom {
+    background-color: var(--gray-color);
+    text-align: center;
+    margin-top: 70px;
+    padding-bottom: 5px;
+}
+
+.footer .footer-bottom p {
+    padding-top: 20px;
+    color: white;
+}
+
+@media (max-width: 750px) {
+    .footer .footer-col {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 574px) {
+    .footer .footer-col {
+        width: 100%;
+    }
+}

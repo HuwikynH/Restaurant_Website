@@ -1,0 +1,57 @@
+@import url("../../variables.css");
+
+.small-collection-card .card {
+    position: relative;
+    height: 420px;
+    border: none;
+    overflow: hidden;
+}
+
+.small-collection-card .card .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.small-collection-card .card:hover img {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.small-collection-card .card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0)
+    );
+    z-index: 0;
+}
+
+.small-collection-card .card .card-img-overlay {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    z-index: 10;
+}
+
+.small-collection-card .card .card-img-overlay .card-subtitle {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.small-collection-card .card .card-img-overlay .card-title {
+    font-size: 50;
+    text-transform: uppercase;
+    font-weight: bold;
+}

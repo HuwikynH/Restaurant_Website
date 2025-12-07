@@ -1,0 +1,120 @@
+.admin-side-board-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background: #eae6da;
+    z-index: 100;
+    border-radius: 0;
+    box-shadow: 0 8px 11px rgb(14 55 54 / 40%);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-content {
+    margin-left: 280px;
+}
+
+.admin-side-board-wrapper .navigation {
+    width: 100%;
+}
+.admin-side-board-wrapper .navigation .side-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 100px);
+    padding-bottom: 30px;
+}
+
+.admin-side-board-wrapper .navigation .logo {
+    background: #eae6da;
+    margin: 18px 0 0 0;
+    padding-left: 18px;
+    border-radius: 0;
+    display: flex;
+    align-content: center;
+}
+
+.admin-side-board-wrapper .navigation .logo img {
+    width: 230px;
+}
+
+.admin-side-board-wrapper .navigation .logo i {
+    font-size: 30px;
+    align-self: center;
+}
+
+.admin-side-board-wrapper .navigation .side-bar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 50px;
+    /* width: 100%; */
+}
+
+.admin-side-board-wrapper .navigation .side-bar-link {
+    padding: 5px 0 5px 18px;
+    width: 92%;
+    margin-left: 8px;
+    text-decoration: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-side-board-wrapper .navigation .side-bar-link .content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-side-board-wrapper .navigation .side-bar-link .content i {
+    font-size: 30px;
+}
+
+.admin-side-board-wrapper .navigation .side-bar-link .content .pen-icon {
+    font-size: 25px;
+    margin-left: 5px;
+}
+
+.admin-side-board-wrapper .navigation .side-bar-link:hover,
+.admin-side-board-wrapper .navigation .side-bar-link.active {
+    background-color: var(--gray-color);
+}
+.admin-side-board-wrapper .navigation .side-bar-link:hover .content,
+.admin-side-board-wrapper .navigation .side-bar-link.active .content {
+    color: white;
+    padding-left: 30px;
+}
+
+.logout-btn {
+    border: none;
+    background-color: #eae6da;
+    width: 92%;
+    margin: 0 0 18px 8px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+.logout-btn:hover {
+    background: #d6d1c4;
+}
+.admin-side-board-wrapper .navigation .side-bar-link:hover,
+.admin-side-board-wrapper .navigation .side-bar-link.active {
+    border-radius: 20px;
+}
+
+.admin-back-home-btn {
+    color: #007bff !important;
+
+    background: none;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: background 0.2s;
+}
+.admin-back-home-btn:hover {
+    background: #f0f7ff;
+    color: #0056b3 !important;
+}

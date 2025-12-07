@@ -1,0 +1,66 @@
+@import url("../../BlogVariables.css");
+
+/* Author Info */
+.author-info {
+    text-align: center;
+    font-size: 16px;
+    color: var(--secondary-text-color);
+    margin-bottom: 15px;
+}
+
+.author-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.author-name {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--text-color);
+    position: relative;
+}
+
+.article-date {
+    margin-left: 10px;
+    color: #777;
+}
+
+.author-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 400px;
+    padding: 20px;
+    font-size: 15px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+}
+
+.author-wrapper:hover .author-popup {
+    opacity: 1;
+    visibility: visible;
+}
+
+.author-image {
+    width: 60px;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.name-1 {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .author-popup {
+        width: 300px;
+    }
+}

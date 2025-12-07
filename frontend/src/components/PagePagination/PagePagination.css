@@ -1,0 +1,29 @@
+@import url("../../variables.css");
+
+.page-pagination-wrapper {
+    user-select: none;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.page-pagination-wrapper .pagination {
+    justify-content: center;
+    gap: 5px;
+}
+
+.page-pagination-wrapper .pagination .page-item .page-link {
+    border: 1px solid var(--gray-color);
+    border-radius: 5px;
+    color: var(--gray-color);
+    font-weight: 500;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.page-pagination-wrapper .pagination .page-item.active .page-link {
+    background-color: var(--gray-color);
+    color: white;
+}

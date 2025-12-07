@@ -1,0 +1,132 @@
+.team-container {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.team-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.team-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+  border-radius: 2px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.about-team-member {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.about-team-member:hover {
+  transform: translateY(-5px);
+}
+
+.about-member-image {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.about-member-image:hover img {
+  transform: scale(1.1);
+}
+
+.about-member-info {
+  padding: 20px;
+}
+
+.about-member-info h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.about-member-info h3::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+}
+
+.about-member-info h4 {
+  font-size: 1.1rem;
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.about-member-info p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .team-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .about-member-image {
+    height: 250px;
+  }
+
+  .about-member-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .about-member-info h4 {
+    font-size: 1rem;
+  }
+
+  .about-member-info p {
+    font-size: 0.9rem;
+  }
+}

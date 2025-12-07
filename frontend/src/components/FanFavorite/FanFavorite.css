@@ -1,0 +1,10 @@
+@import url("../../variables.css");
+
+.fan-favorite-wrapper {
+    margin-top: 30px;
+}
+
+.fan-favorite-wrapper h2 {
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}

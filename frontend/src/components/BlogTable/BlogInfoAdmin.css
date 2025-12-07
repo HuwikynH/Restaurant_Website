@@ -1,0 +1,25 @@
+.blog-info-admin-container {
+  padding: 24px 0;
+}
+
+.blog-info-admin-container .blog-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.blog-info-admin-container .blog-meta {
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.blog-info-admin-container .blog-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.blog-info-admin-container .blog-content {
+  font-size: 1rem;
+  line-height: 1.6;
+} 

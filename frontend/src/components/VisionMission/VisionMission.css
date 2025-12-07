@@ -1,0 +1,68 @@
+.vision-mission {
+  margin-top: 80px;
+  padding: 40px 0;
+}
+
+.vm-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.vm-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vm-icon {
+  font-size: 3rem;
+  color: #ff6b6b;
+  margin-bottom: 25px;
+}
+
+.vm-card h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.vm-card p {
+  color: #666;
+  line-height: 1.8;
+}
+
+.mission-list {
+  list-style: none;
+  padding: 0;
+}
+
+.mission-list li {
+  color: #666;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.mission-list li::before {
+  content: "•";
+  color: #ff6b6b;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .vm-container {
+    grid-template-columns: 1fr;
+  }
+
+  .vm-card {
+    padding: 30px;
+  }
+}

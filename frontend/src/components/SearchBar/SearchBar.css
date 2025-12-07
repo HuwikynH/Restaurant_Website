@@ -1,0 +1,34 @@
+@import url("../../variables.css");
+
+.search-bar-wrapper {
+    display: flex;
+    justify-self: center;
+    width: 700px;
+}
+
+@media (max-width: 700px) {
+    .search-bar-wrapper {
+        min-width: unset;
+        width: 90%;
+    }
+}
+
+.search-bar-wrapper .input-group .form-control {
+    border-radius: 20px;
+}
+
+.search-bar-wrapper .input-group .form-control:focus {
+    border: 2px solid var(--gray-color);
+    box-shadow: none;
+}
+
+.search-bar-wrapper .input-group button {
+    border-radius: 20px;
+    background-color: var(--gray-color);
+    color: white;
+    width: 100px;
+}
+
+.search-bar-wrapper .input-group button:hover {
+    filter: brightness(1.3);
+}

@@ -1,0 +1,16 @@
+.recipe-direction-wrapper {
+    margin-top: 50px;
+}
+
+.recipe-direction-wrapper .title {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.recipe-direction-wrapper ol {
+    gap: 10px;
+}
+
+.recipe-direction-wrapper ol li {
+    font-size: 18px;
+}
