@@ -1,28 +1,32 @@
 # Website Đặt Bàn Nhà Hàng Ratatouille
 
-Hệ thống web hỗ trợ khách hàng **đặt bàn tại nhà hàng Ratatouille**, chọn menu món ăn trước, theo dõi trạng thái thanh toán; đồng thời cung cấp giao diện **admin** để quản lý món ăn, danh mục, sơ đồ bàn, danh sách đặt bàn và lịch sử thanh toán.
+Hệ thống web hỗ trợ khách hàng **đặt bàn tại nhà hàng Ratatouille**, chọn menu món ăn trước, thanh toán trực tuyến qua **MoMo (sandbox)**, theo dõi trạng thái đơn; đồng thời cung cấp giao diện **admin** để quản lý món ăn, danh mục, sơ đồ bàn, danh sách đặt bàn và lịch sử thanh toán.
 
-Ngoài chức năng chia sẻ công thức, dự án đã được mở rộng thành một hệ thống **đặt bàn + quản lý thực đơn** với kiến trúc microservices.
+Ban đầu đây là website chia sẻ công thức nấu ăn, sau đó được mở rộng thành một hệ thống **đặt bàn + quản lý thực đơn + thanh toán online** với kiến trúc microservices.
 
 ## Tính năng chính
 
 - **Đối với khách hàng**
-  - Đăng ký / đăng nhập tài khoản.
-  - Đặt bàn theo chi nhánh, ngày, giờ, số khách, loại bàn.
-  - Chọn menu món ăn cho từng booking, chỉnh số lượng, ghi chú.
-  - Xem lịch sử đặt bàn, trạng thái thanh toán.
+  - Đăng ký / đăng nhập tài khoản (bao gồm đăng nhập Google).
+  - Đặt bàn theo chi nhánh, ngày, giờ, số khách, tầng & bàn cụ thể.
+  - Chọn trước **sản phẩm dịch vụ** của nhà hàng: món ăn, combo, set menu, phòng/bàn VIP...
+  - Thanh toán trực tuyến bằng **MoMo sandbox** cho đơn đặt bàn và gói dịch vụ đã chọn.
+  - Xem lịch sử đặt bàn và **lịch sử thanh toán của riêng mình** ở trang `/my-bookings` và `/my-payments`.
+  - Tham khảo công thức món ăn, bài viết blog, lưu món yêu thích.
 
 - **Đối với admin**
   - Quản lý món ăn (recipes) và danh mục (categories).
   - Quản lý sơ đồ bàn theo chi nhánh (tables).
-  - Xem, lọc, tìm kiếm danh sách đặt bàn.
-  - Đánh dấu đã thanh toán, xử lý yêu cầu hủy, xóa booking.
-  - Theo dõi lịch sử thanh toán qua payment-service.
+  - Xem, lọc, tìm kiếm danh sách đặt bàn, xử lý yêu cầu hủy, xóa booking.
+  - Theo dõi lịch sử thanh toán qua payment-service (không cần nhập tay, được cập nhật từ MoMo / job quá hạn).
+
+> Trong hệ thống, “sản phẩm” được hiểu là **các món ăn, combo và gói dịch vụ ăn uống** (set menu, gói sinh nhật, phòng VIP…) tại nhà hàng. Người dùng có thể đặt bàn, chọn trước các sản phẩm dịch vụ này và thanh toán trực tuyến. Như vậy, hệ thống vẫn là một **nền tảng mua bán trực tuyến**, nhưng tập trung vào **dịch vụ nhà hàng** thay vì hàng hoá vật lý.
 
 - **Cơ chế giữ bàn 15 phút sau khi chốt menu**
-  - Sau khi khách chốt menu, hệ thống giữ bàn và giỏ món trong 15 phút.
-  - Trong khoảng thời gian này, admin có thể đánh dấu đã thanh toán.
-  - Nếu hết 15 phút chưa thanh toán, booking sẽ tự hủy và được ghi nhận là **quá hạn thanh toán**.
+  - Sau khi khách chốt menu, order-service set `status = PENDING_PAYMENT`, `paymentStatus = PENDING` và `paymentExpiresAt = now + 15 phút`.
+  - Nếu quá thời gian mà chưa thanh toán, **job nền của order-service** sẽ tự:
+    - Gọi payment-service tạo bản ghi payment `EXPIRED`.
+    - Cập nhật booking sang `status = CANCELLED`, `paymentStatus = EXPIRED`.
 
 ## Công nghệ sử dụng
 
@@ -39,17 +43,18 @@ Ngoài chức năng chia sẻ công thức, dự án đã được mở rộng t
 - MongoDB Atlas
 - Mongoose
 - Bcrypt (xử lý mật khẩu người dùng)
+- Tích hợp **cổng thanh toán MoMo sandbox** trong payment-service.
 - Kiến trúc microservices:
   - Backend monolith (auth, user, upload, blog,...)
   - Product-service (recipes, categories, comments, favorites)
   - Cart-service (giỏ món theo booking)
   - Order-service (bookings, tables, logic giữ bàn 15 phút)
-  - Payment-service (payments, trạng thái SUCCESS/EXPIRED)
+  - Payment-service (payments, MoMo, lịch sử thanh toán)
 
 ## Cấu trúc thư mục
 
 ```bash
-Recipe_Website/
+Restaurant_Website/
 ├── backend/                # Backend monolith (auth, user, blog, upload,...)
 │   ├── config/
 │   ├── controllers/
@@ -99,14 +104,30 @@ Hệ thống được tổ chức theo mô hình **microservices**, frontend gia
   - Quản lý đặt bàn (bookings) và sơ đồ bàn (tables).
   - Chịu trách nhiệm logic **giữ bàn 15 phút sau khi chốt menu**:
     - Khi `confirm-menu`: tính tổng tiền, set `status = PENDING_PAYMENT`, `paymentStatus = PENDING`, `paymentExpiresAt = now + 15 phút`.
-    - Job nền chạy mỗi phút: nếu đã quá `paymentExpiresAt` mà chưa thanh toán thì tự hủy booking và tạo bản ghi payment EXPIRED.
+    - Job nền chạy mỗi phút: nếu đã quá `paymentExpiresAt` mà chưa thanh toán thì tự hủy booking và tạo bản ghi payment `EXPIRED`.
   - Database: `Restaurant_orders`.
 
 - **Payment-service**
-  - Lưu lịch sử thanh toán của từng booking.
-  - API chính:
-    - `POST /api/payments`: admin đánh dấu đã thanh toán → tạo `Payment` trạng thái `SUCCESS` và gọi order-service `mark-paid`.
-    - `POST /api/payments/expired`: được order-service gọi khi đơn quá hạn 15 phút → tạo `Payment` trạng thái `EXPIRED`.
+  - Lưu lịch sử thanh toán và tích hợp MoMo sandbox.
+  - Một số API chính:
+    - `POST /api/payments`:
+      - Lấy thông tin booking từ order-service.
+      - Tạo bản ghi `Payment` trạng thái `PENDING`.
+      - Gọi MoMo sandbox tạo giao dịch và trả về `payUrl` cho frontend redirect.
+    - `POST /api/payments/complete`:
+      - Được frontend gọi sau khi MoMo redirect về `/payment-result`.
+      - Cập nhật `Payment` sang `SUCCESS`/`FAILED` dựa trên `resultCode`.
+      - Nếu thành công: gọi order-service `POST /api/bookings/:bookingId/mark-paid` để set booking `PAID`.
+    - `POST /api/payments/momo-ipn` (tuỳ chọn khi deploy có public URL):
+      - Nhận IPN từ MoMo, cập nhật `Payment` & booking tương tự `/complete`.
+    - `POST /api/payments/expired`:
+      - Được order-service gọi khi booking quá hạn 15 phút.
+      - Tạo `Payment` trạng thái `EXPIRED` để lưu lịch sử.
+    - `GET /api/payments/booking/:bookingId`:
+      - Lấy danh sách payment của một booking (dùng cho trang chi tiết nếu cần).
+    - `GET /api/payments/user/:userId`:
+      - Dùng cho trang **"Lịch sử thanh toán"** của user (`/my-payments`).
+      - Gộp toàn bộ payments của các booking thuộc user đó, kèm thông tin booking cơ bản.
   - Database: `Restaurant_payments`.
 
 **Luồng chính (tóm tắt):**
@@ -115,9 +136,77 @@ Hệ thống được tổ chức theo mô hình **microservices**, frontend gia
 - Client → Product-service: lấy danh sách món/danh mục, chi tiết recipe.
 - Client → Cart-service: thêm/sửa/xóa món trong giỏ theo `bookingId`.
 - Client → Order-service: tạo booking, chốt menu (`confirm-menu`), xem danh sách booking.
-- Admin → Payment-service: đánh dấu đã thanh toán booking.
+- Client → Payment-service: tạo giao dịch MoMo, nhận kết quả thanh toán, trả lịch sử thanh toán cho user.
 - Order-service ↔ Cart-service: đọc giỏ món khi chốt menu.
 - Payment-service ↔ Order-service: cập nhật trạng thái booking sau thanh toán hoặc khi quá hạn.
+
+## Mức độ đáp ứng yêu cầu đồ án (tóm tắt)
+
+- **Kiến trúc microservices**
+  - Có ít nhất 3 service tách biệt: product-service, cart-service, order-service, payment-service.
+  - Mỗi service có database riêng trên MongoDB Atlas.
+
+- **Quy trình nghiệp vụ rõ ràng**
+  - Luồng đặt bàn 5 bước: chọn chi nhánh → chọn ngày/giờ → chọn tầng & bàn → chọn menu → xác nhận & thanh toán.
+  - Sơ đồ bàn trực quan (tầng 1, tầng 2), phân biệt bàn thường, VIP, bàn đã được đặt.
+
+- **Giữ bàn & xử lý quá hạn thanh toán**
+  - Sau khi chốt menu, hệ thống giữ bàn trong 15 phút bằng trường `paymentExpiresAt`.
+  - Job nền trong order-service tự động hủy các booking quá hạn và tạo bản ghi payment `EXPIRED` qua payment-service.
+
+- **Tích hợp cổng thanh toán bên thứ ba (MoMo sandbox)**
+  - payment-service gọi trực tiếp API MoMo (sandbox) để tạo `payUrl`.
+  - Frontend redirect sang MoMo, sau thanh toán MoMo redirect về `/payment-result`.
+  - Trang `/payment-result` gọi `POST /api/payments/complete` để cập nhật payment & booking.
+
+- **Giao diện người dùng & phân quyền**
+  - Khách hàng: đặt bàn, chọn menu, thanh toán MoMo, xem `/my-bookings` và `/my-payments`.
+  - Admin: quản lý món ăn, danh mục, sơ đồ bàn, bookings, theo dõi lịch sử thanh toán.
+
+- **Lưu vết & báo cáo**
+  - Bảng `payments` lưu toàn bộ lịch sử thanh toán (SUCCESS/FAILED/EXPIRED) để truy vết.
+  - Trang "Lịch sử thanh toán" tổng hợp giao dịch theo từng user.
+
+### Sơ đồ kiến trúc (tổng quan)
+
+```text
+                 +--------------------+
+                 |     Client (FE)    |
+                 |   React / Browser  |
+                 +----------+---------+
+                            |
+                            | HTTP (REST API)
+                            v
+    +-----------------------+------------------------+
+    |                 Backend & Services             |
+    |                                                |
+    |  +-------------------+    +----------------+   |
+    |  |  Backend monolith |    | Product-service|   |
+    |  |  (auth, user,     |    | (recipes,      |   |
+    |  |   blog, upload...)|    |  categories...)|   |
+    |  +---------+---------+    +--------+-------+   |
+    |            |                     |           |
+    |            |                     |           |
+    |  +---------v---------+   +-------v--------+  |
+    |  |   Cart-service    |   | Order-service  |  |
+    |  | (giỏ món theo     |   | (bookings,     |  |
+    |  |  bookingId)       |   |  tables, 15')  |  |
+    |  +---------+---------+   +-------+--------+  |
+    |            |                     |           |
+    |            |                     |           |
+    |        +---v---------------------v---+       |
+    |        |       Payment-service       |       |
+    |        | (MoMo, lịch sử thanh toán) |       |
+    |        +---------------+------------+       |
+    +------------------------|--------------------+
+                             |
+                             | MongoDB (Atlas)
+                             v
+        +--------------------+--------------------+
+        |  Restaurant_Website / _orders / _carts |
+        |  _products / _payments (các database)  |
+        +----------------------------------------+
+```
 
 ## Thiết kế cơ sở dữ liệu (tóm tắt)
 
@@ -147,9 +236,9 @@ Hệ thống được tổ chức theo mô hình **microservices**, frontend gia
 - **payments**
   - `bookingId`: tham chiếu tới booking.
   - `amount`: số tiền thanh toán.
-  - `method`: phương thức (hiện tại giả lập `MOCK`).
+  - `method`: phương thức (MOMO, MOCK cho bản ghi EXPIRED,...).
   - `status`: `PENDING | SUCCESS | FAILED | EXPIRED`.
-  - `transactionId`: mã giao dịch phục vụ tra cứu.
+  - `transactionId`: mã giao dịch từ MoMo hoặc sinh nội bộ.
   - `createdAt`, `updatedAt`.
 
 ### Restaurant_products
@@ -170,19 +259,50 @@ Hệ thống được tổ chức theo mô hình **microservices**, frontend gia
 
 ## Chạy và cài đặt dự án
 
-git clone https://github.com/WebsiteRatatouille/Recipe_Website.git
-cd recipe_website
-
-### Cài đặt backend
 ```bash
-cd backend 
-npm install 
-npm run dev 
+git clone https://github.com/HuwikynH/Restaurant_Website.git
+cd Restaurant_Website
 ```
-### Cài đặt frontend
+
+### 1. Backend monolith
+
 ```bash
-cd frontend 
-npm install 
+cd backend
+npm install
+npm run dev
+```
+
+### 2. Các microservice
+
+Mỗi service chạy ở một terminal khác nhau:
+
+```bash
+# product-service (recipes, categories,...)
+cd microservices/product-service
+npm install
+npm start
+
+# cart-service (giỏ món)
+cd ../cart-service
+npm install
+npm start
+
+# order-service (bookings, tables, job hết hạn 15 phút)
+cd ../order-service
+npm install
+npm start
+
+# payment-service (MoMo, lịch sử thanh toán)
+cd ../payment-service
+npm install
+npm start
+```
+
+### 3. Frontend (React)
+
+```bash
+cd ../frontend
+npm install
 npm start
 ```
 
@@ -191,8 +311,7 @@ npm start
 Họ tên Mã sinh viên Lớp 
 Nguyễn Đức Lộc N22DCCN150 D22CQCN02-N 
 Nguyễn Hữu Huynh N22DCCN135 D22CQCN02-N 
-Mai Vũ Tuấn Minh N22DCCN152 D22CQCN02-N 
 ```
 ## Ghi chú
 
-Đây là đồ án môn học nhằm rèn luyện kỹ năng fullstack web development
+Đây là đồ án môn học nhằm rèn luyện kỹ năng **fullstack web development** với kiến trúc microservices và **tích hợp cổng thanh toán MoMo sandbox**.

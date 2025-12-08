@@ -2,7 +2,6 @@ import React from "react";
 import "./TeamMember.css";
 import huuhuynhImg from "../../assets/imgTeam/huuhuynh.jpg";
 import duclocImg from "../../assets/imgTeam/ducloc.jpg";
-import tuanminhImg from "../../assets/imgTeam/tuanminh.jpg";
 
 const teamData = [
     {
@@ -16,18 +15,10 @@ const teamData = [
     {
         name: "Nguyễn Đức Lộc",
         image: duclocImg,
-        position: "Leader",
+        position: "Developer",
         // description: "Phụ trách thiết kế giao diện và trải nghiệm người dùng",
         phone: "+84 38 314 8283",
         email: "nguyenducloc.dalat@gmail.com",
-    },
-    {
-        name: "Mai Vũ Tuấn Minh",
-        image: tuanminhImg,
-        position: "Content Manager",
-        // description: "Phụ trách quản lý và phát triển nội dung",
-        phone: "+84 456 789 123",
-        email: "tuanminh@example.com",
     },
 ];
 

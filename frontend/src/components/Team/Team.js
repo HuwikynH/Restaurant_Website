@@ -1,7 +1,6 @@
 import React from "react";
 import huuhuynhImg from "../../assets/imgTeam/huuhuynh.jpg";
 import duclocImg from "../../assets/imgTeam/ducloc.jpg";
-import tuanminhImg from "../../assets/imgTeam/tuanminh.jpg";
 import "./Team.css";
 
 const Team = () => {
@@ -14,15 +13,9 @@ const Team = () => {
     },
     {
       name: "Nguyễn Đức Lộc",
-      role: "Leader",
-      description: "Dẫn dắt đội ngũ phát triển dự án ",
+      role: "Developer",
+      description: "Phụ trách phát triển dự án",
       image: duclocImg,
-    },
-    {
-      name: "Mai Vũ Tuấn Minh",
-      role: "Content Manager",
-      description: "Quản lý nội dung dự án",
-      image: tuanminhImg,
     },
   ];
 

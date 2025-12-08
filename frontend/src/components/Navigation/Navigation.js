@@ -6,8 +6,7 @@ const Navigation = () => {
   const navItems = [
     { path: '/', label: 'HOME' },
     { path: '/recipes', label: 'CÔNG THỨC' },
-    { path: '/contact', label: 'LIÊN HỆ' },
-    { path: '/aboutUs', label: 'CHÚNG TÔI' }
+    { path: '/contact', label: 'LIÊN HỆ' }
   ];
 
   return (

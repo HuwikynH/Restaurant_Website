@@ -8,7 +8,6 @@ import UserLayout from "./layouts/UserLayout/UserLayout";
 import Home from "./pages/UserPages/Home/Home";
 import Recipes from "./pages/UserPages/Recipes/Recipes";
 import Contact from "./pages/UserPages/Contact/Contact";
-import AboutUs from "./pages/UserPages/AboutUs/AboutUs";
 import Blog from "./pages/UserPages/Blog/Blog";
 import UserProfile from "./pages/UserMenu/UserProfile/UserProfile";
 import MyRecipes from "./pages/UserMenu/MyRecipes/MyRecipes";
@@ -102,7 +101,6 @@ function App() {
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blogs/:id" element={<BlogDetail />} />
                         <Route path="/contact" element={<Contact />} />
-                        <Route path="/aboutUs" element={<AboutUs />} />
                         <Route path="/verify-email-status" element={<EmailVerificationStatus />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/booking" element={<Booking />} />

@@ -61,10 +61,10 @@ const Project = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              Ratatouille không chỉ là một website công thức nấu ăn thông
-              thường. Chúng tôi là một nền tảng kết nối những người đam mê ẩm
-              thực, nơi bạn có thể khám phá, học hỏi và chia sẻ niềm đam mê nấu
-              nướng của mình.
+              Ratatouille được xây dựng như một hệ thống đặt bàn và quản lý thực đơn
+              cho nhà hàng. Khách hàng có thể chọn chi nhánh, khung giờ, bàn, set menu
+              và thanh toán trực tuyến trước khi đến, giúp trải nghiệm tại nhà hàng
+              trở nên chủ động và thoải mái hơn.
             </p>
           </motion.div>
         </div>

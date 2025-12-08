@@ -81,9 +81,6 @@ function Navbar({ setShowLogin }) {
               <NavLink className="nav-link" to="/contact">
                 Liên hệ
               </NavLink>
-              <NavLink className="nav-link" to="/aboutUs">
-                Chúng tôi
-              </NavLink>
             </ul>
           </div>
           <div className="profile" style={{ position: "relative" }}>

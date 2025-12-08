@@ -12,11 +12,6 @@ function Footer() {
                         <h4>Ratatouille</h4>
                         <ul>
                             <li>
-                                <NavLink className="footer-nav-link" to="/aboutUs">
-                                    Về chúng tôi
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink className="footer-nav-link" to="/blog">
                                     Blog
                                 </NavLink>

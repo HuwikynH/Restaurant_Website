@@ -3,11 +3,11 @@ import "./VisionMission.css";
 
 const VisionMission = () => {
   const missionPoints = [
-    "Cung cấp nguồn công thức nấu ăn đa dạng, chất lượng và đáng tin cậy",
-    "Xây dựng cộng đồng chia sẻ kiến thức và đam mê ẩm thực",
-    "Bảo tồn và phát triển các món ăn truyền thống",
-    "Hỗ trợ người dùng phát triển kỹ năng nấu ăn",
-    "Tạo ra không gian sáng tạo và truyền cảm hứng trong ẩm thực",
+    "Mang đến trải nghiệm ẩm thực tinh tế, ấm cúng và thân thiện cho mọi thực khách",
+    "Sử dụng nguyên liệu tươi ngon, đảm bảo an toàn và chất lượng trong từng món ăn",
+    "Không ngừng cải tiến thực đơn và dịch vụ để phù hợp với nhu cầu khách hàng",
+    "Xây dựng đội ngũ nhân viên chuyên nghiệp, tận tâm phục vụ",
+    "Góp phần lan toả văn hoá ẩm thực qua những bữa ăn trọn vẹn tại nhà hàng",
   ];
 
   return (
@@ -17,10 +17,9 @@ const VisionMission = () => {
           <FaBookOpen className="vm-icon" />
           <h2>Tầm Nhìn</h2>
           <p>
-            Trở thành nền tảng ẩm thực hàng đầu, nơi mỗi người có thể khám phá
-            niềm vui nấu ăn và chia sẻ đam mê ẩm thực. Chúng tôi cam kết mang
-            đến những trải nghiệm nấu ăn tuyệt vời và kết nối cộng đồng yêu ẩm
-            thực.
+            Trở thành một trong những nhà hàng ẩm thực được yêu thích tại thành phố,
+            nơi mỗi bữa ăn là một trải nghiệm trọn vẹn về hương vị, không gian và
+            phong cách phục vụ.
           </p>
         </div>
         <div className="vm-card">

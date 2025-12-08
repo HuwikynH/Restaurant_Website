@@ -39,12 +39,13 @@ const SchoolIntro = () => {
                             chuyên nghiệp cho thế hệ sinh viên trẻ.
                         </p>
                         <p>
-                            Dự án website Ratatouille là thành quả của những kiến thức và kỹ năng mà
-                            chúng tôi đã tích lũy được trong quá trình học tập tại Học viện. Dưới sự
-                            dìu dắt tận tình của các giảng viên khoa Công nghệ Thông tin, chúng tôi
-                            đã kết hợp giữa chuyên môn công nghệ với niềm đam mê ẩm thực để tạo nên
-                            một nền tảng độc đáo, thể hiện tinh thần sáng tạo và khả năng ứng dụng
-                            công nghệ vào thực tiễn của sinh viên PTIT.
+                            Dự án hệ thống đặt bàn cho nhà hàng Ratatouille là thành quả của những
+                            kiến thức và kỹ năng mà chúng tôi đã tích lũy được trong quá trình học
+                            tập tại Học viện. Dưới sự dìu dắt tận tình của các giảng viên khoa Công
+                            nghệ Thông tin, chúng tôi đã kết hợp giữa chuyên môn công nghệ với niềm
+                            đam mê ẩm thực để xây dựng một giải pháp thực tế cho hoạt động kinh doanh
+                            nhà hàng, thể hiện tinh thần sáng tạo và khả năng ứng dụng công nghệ vào
+                            cuộc sống của sinh viên PTIT.
                         </p>
                         <div className="school-stats">
                             {stats.map((stat, index) => (
