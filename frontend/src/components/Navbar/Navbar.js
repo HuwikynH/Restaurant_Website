@@ -150,6 +150,15 @@ function Navbar({ setShowLogin }) {
                         </Link>
 
                         <Link
+                          to="/my-payments"
+                          className="menu-item"
+                          onClick={() => setShowMenu(false)}
+                        >
+                          <i className="fas fa-receipt"></i>
+                          Lịch sử thanh toán
+                        </Link>
+
+                        <Link
                           to="/favorite-recipes"
                           className="menu-item"
                           onClick={() => setShowMenu(false)}

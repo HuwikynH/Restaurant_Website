@@ -80,6 +80,7 @@ const BookingReview = () => {
     const [booking, setBooking] = useState(null);
     const [loading, setLoading] = useState(true);
     const [now, setNow] = useState(Date.now());
+    const [paying, setPaying] = useState(false);
 
     const fetchBooking = async () => {
         try {
@@ -100,6 +101,8 @@ const BookingReview = () => {
         fetchBooking();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bookingId]);
+
+    // Bỏ phần fetch lịch sử thanh toán; user xem lịch sử chung ở trang /my-payments
 
     // cập nhật thời gian hiện tại để hiển thị countdown 15 phút giữ bàn
     useEffect(() => {
@@ -136,6 +139,44 @@ const BookingReview = () => {
             .padStart(2, "0");
         const s = (seconds % 60).toString().padStart(2, "0");
         return `${m}:${s}`;
+    };
+
+    const handlePayWithMomo = async () => {
+        if (!bookingId || paying) return;
+        try {
+            setPaying(true);
+            const res = await fetch("http://localhost:8004/api/payments", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ bookingId }),
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success || !data.data?.payUrl) {
+                throw new Error(data.message || "Không tạo được giao dịch MoMo");
+            }
+            try {
+                if (data.data.payment && data.data.payment._id) {
+                    localStorage.setItem(
+                        "lastBookingPayment",
+                        JSON.stringify({
+                            bookingId,
+                            paymentId: data.data.payment._id,
+                        })
+                    );
+                }
+            } catch (e) {
+                // ignore localStorage errors
+            }
+
+            window.location.href = data.data.payUrl;
+        } catch (error) {
+            console.error(error);
+            alert(error.message || "Không thể tạo giao dịch thanh toán MoMo");
+        } finally {
+            setPaying(false);
+        }
     };
 
     const handleStepClick = (stepId) => {
@@ -219,25 +260,22 @@ const BookingReview = () => {
                                     )}
 
                                     <div className="mb-3 text-center">
-                                        {/* Đặt file ảnh QR vào public/qr-table.png */}
-                                        <img
-                                            src="/qr-table.png"
-                                            alt="QR thanh toán tiền bàn"
-                                            style={{
-                                                maxWidth: 260,
-                                                width: "100%",
-                                                borderRadius: 16,
-                                                boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                                            }}
-                                        />
-                                        <p className="mt-2 mb-1">
-                                            Vui lòng quét QR để thanh toán tối thiểu tiền bàn: {" "}
-                                            <strong>{basePrice.toLocaleString("vi-VN")} đ</strong>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            disabled={paying || remainingSeconds === 0}
+                                            onClick={handlePayWithMomo}
+                                        >
+                                            {remainingSeconds === 0
+                                                ? "Đã hết thời gian giữ bàn"
+                                                : paying
+                                                ? "Đang tạo giao dịch MoMo..."
+                                                : "Thanh toán trực tuyến với MoMo"}
+                                        </button>
+                                        <p className="mt-2 mb-0">
+                                            Sau khi thanh toán thành công trên MoMo, trạng thái đơn sẽ được cập nhật
+                                            tự động.
                                         </p>
-                                        <small className="text-muted">
-                                            Sau khi nhận được tiền, quản trị viên sẽ xác nhận thanh toán và đơn đặt
-                                            bàn của bạn sẽ được kích hoạt.
-                                        </small>
                                     </div>
                                 </>
                             ) : (
@@ -260,6 +298,7 @@ const BookingReview = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

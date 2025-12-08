@@ -598,20 +598,27 @@ const Booking = () => {
                             const isVip = t.status === "vip" || t.type === "vip";
                             const isSvip = t.type === "svip";
 
+                            // Mặc định: bàn trống
                             let bg = "#e9f7ef";
                             let border = "#28a745";
+
+                            // VIP/SVIP chỉ áp dụng khi bàn chưa bị đặt
+                            if (!isBooked && isVip) {
+                                bg = "#fdecea";
+                                border = "#dc3545";
+                            }
+                            if (!isBooked && isSvip) {
+                                bg = "#f3e8ff";
+                                border = "#6f42c1";
+                            }
+
+                            // Bàn đã đặt luôn xám, ưu tiên cao nhất
                             if (isBooked) {
                                 bg = "#e9ecef";
                                 border = "#ced4da";
                             }
-                            if (isVip) {
-                                bg = "#fdecea";
-                                border = "#dc3545";
-                            }
-                            if (isSvip) {
-                                bg = "#f3e8ff";
-                                border = "#6f42c1";
-                            }
+
+                            // Bàn đang được user chọn
                             if (isSelected) {
                                 bg = "#fff3cd";
                                 border = "#ffc107";

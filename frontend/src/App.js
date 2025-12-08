@@ -15,6 +15,7 @@ import MyRecipes from "./pages/UserMenu/MyRecipes/MyRecipes";
 import AddRecipe from "./pages/UserMenu/AddRecipe/AddRecipe";
 import FavoriteRecipes from "./pages/UserMenu/FavoriteRecipes/FavoriteRecipes";
 import MyBookings from "./pages/UserMenu/MyBookings/MyBookings";
+import UserPaymentHistory from "./pages/UserPages/Payment/UserPaymentHistory";
 
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import AdminDashboard from "./pages/AdminPages/AdminDashboard/AdminDashboard";
@@ -35,6 +36,7 @@ import AdminBlogs from "./pages/AdminPages/AdminBlogs/AdminBlogs";
 import Booking from "./pages/UserPages/Booking/Booking";
 import BookingMenu from "./pages/UserPages/Booking/BookingMenu";
 import BookingReview from "./pages/UserPages/Booking/BookingReview";
+import PaymentResult from "./pages/UserPages/Booking/PaymentResult";
 
 function App() {
     const [showLogin, setShowLogin] = useState(false);
@@ -106,6 +108,7 @@ function App() {
                         <Route path="/booking" element={<Booking />} />
                         <Route path="/booking/:bookingId/menu" element={<BookingMenu />} />
                         <Route path="/booking/:bookingId/review" element={<BookingReview />} />
+                        <Route path="/payment-result" element={<PaymentResult />} />
                     </Route>
 
                     {/* Trang user đã đăng nhập */}
@@ -116,6 +119,7 @@ function App() {
                     >
                         <Route path="/profile" element={<UserProfile />} />
                         <Route path="/my-bookings" element={<MyBookings />} />
+                        <Route path="/my-payments" element={<UserPaymentHistory />} />
                         <Route path="/favorite-recipes" element={<FavoriteRecipes />} />
                     </Route>
 
