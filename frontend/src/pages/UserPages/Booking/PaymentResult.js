@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PAYMENT_API_URL =
     process.env.REACT_APP_PAYMENT_API_URL || "http://localhost:8004";
-import { useNavigate } from "react-router-dom";
 
 const PaymentResult = () => {
     const navigate = useNavigate();
