@@ -1,6 +1,5 @@
 import React from "react";
 import ContactMap from "../../../components/Contact/ContactMap";
-import ContactForm from "../../../components/Contact/ContactForm";
 import TeamMember from "../../../components/Contact/TeamMember";
 import SchoolIntro from "../../../components/SchoolIntro/SchoolIntro";
 import SocialMedia from "../../../components/Contact/SocialMedia";
@@ -21,13 +20,8 @@ const Contact = () => {
       </div>
 
       <div className="contact-container">
-        <div className="contact-grid">
-          <div className="contact-form-section">
-            <ContactForm />
-          </div>
-          <div className="social-media-section">
-            <SocialMedia />
-          </div>
+        <div className="social-media-section">
+          <SocialMedia />
         </div>
         <TeamMember />
         <SchoolIntro />

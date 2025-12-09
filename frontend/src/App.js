@@ -8,6 +8,7 @@ import UserLayout from "./layouts/UserLayout/UserLayout";
 import Home from "./pages/UserPages/Home/Home";
 import Recipes from "./pages/UserPages/Recipes/Recipes";
 import Blog from "./pages/UserPages/Blog/Blog";
+import Contact from "./pages/UserPages/Contact/Contact";
 import UserProfile from "./pages/UserMenu/UserProfile/UserProfile";
 import MyRecipes from "./pages/UserMenu/MyRecipes/MyRecipes";
 import AddRecipe from "./pages/UserMenu/AddRecipe/AddRecipe";
@@ -98,6 +99,7 @@ function App() {
                         <Route path="/recipes/:id" element={<RecipeDetail />} />
                         <Route path="/search" element={<RecipeSearchResult />} />
                         <Route path="/blog" element={<Blog />} />
+                        <Route path="/contact" element={<Contact />} />
                         <Route path="/blogs/:id" element={<BlogDetail />} />
                         <Route path="/verify-email-status" element={<EmailVerificationStatus />} />
                         <Route path="/login" element={<LoginPage />} />

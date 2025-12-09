@@ -78,6 +78,9 @@ function Navbar({ setShowLogin }) {
               <NavLink className="nav-link" to="/blog">
                 Blog
               </NavLink>
+              <NavLink className="nav-link" to="/contact">
+                Liên hệ
+              </NavLink>
             </ul>
           </div>
           <div className="profile" style={{ position: "relative" }}>
