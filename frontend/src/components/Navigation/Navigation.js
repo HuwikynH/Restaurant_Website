@@ -5,8 +5,7 @@ import './Navigation.css';
 const Navigation = () => {
   const navItems = [
     { path: '/', label: 'HOME' },
-    { path: '/recipes', label: 'CÔNG THỨC' },
-    { path: '/contact', label: 'LIÊN HỆ' }
+    { path: '/recipes', label: 'CÔNG THỨC' }
   ];
 
   return (

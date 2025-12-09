@@ -21,11 +21,7 @@ function Footer() {
                                     Mục lục công thức
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink className="footer-nav-link" to="/contact">
-                                    Liên hệ
-                                </NavLink>
-                            </li>
+                            
                         </ul>
                     </div>
 

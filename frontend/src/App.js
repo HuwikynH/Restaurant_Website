@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import UserLayout from "./layouts/UserLayout/UserLayout";
 import Home from "./pages/UserPages/Home/Home";
 import Recipes from "./pages/UserPages/Recipes/Recipes";
-import Contact from "./pages/UserPages/Contact/Contact";
 import Blog from "./pages/UserPages/Blog/Blog";
 import UserProfile from "./pages/UserMenu/UserProfile/UserProfile";
 import MyRecipes from "./pages/UserMenu/MyRecipes/MyRecipes";
@@ -100,7 +99,6 @@ function App() {
                         <Route path="/search" element={<RecipeSearchResult />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blogs/:id" element={<BlogDetail />} />
-                        <Route path="/contact" element={<Contact />} />
                         <Route path="/verify-email-status" element={<EmailVerificationStatus />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/booking" element={<Booking />} />

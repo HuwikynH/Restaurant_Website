@@ -78,9 +78,6 @@ function Navbar({ setShowLogin }) {
               <NavLink className="nav-link" to="/blog">
                 Blog
               </NavLink>
-              <NavLink className="nav-link" to="/contact">
-                Liên hệ
-              </NavLink>
             </ul>
           </div>
           <div className="profile" style={{ position: "relative" }}>
@@ -164,14 +161,7 @@ function Navbar({ setShowLogin }) {
                           Món ăn yêu thích
                         </Link>
 
-                        <Link
-                          to="/contact"
-                          className="menu-item"
-                          onClick={() => setShowMenu(false)}
-                        >
-                          <i className="fas fa-envelope"></i>
-                          Liên hệ
-                        </Link>
+                        
 
                         {user && user.isAdmin && (
                           <>

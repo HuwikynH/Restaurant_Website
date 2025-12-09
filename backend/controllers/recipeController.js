@@ -1,4 +1,5 @@
 const Recipe = require("../models/Recipe");
+const User = require("../models/User");
 const mongoose = require("mongoose"); // Import mongoose để sử dụng Types.ObjectId
 const cloudinary = require("cloudinary").v2;
 const axios = require("axios");
@@ -196,10 +197,20 @@ const addRecipeComment = async (req, res) => {
     }
 
     const userId = req.user._id || req.user.id;
-    const nameFromUser =
-      req.user.username ||
-      req.user.name ||
-      (req.user.email ? req.user.email.split("@")[0] : undefined);
+
+    // Lấy thông tin user đầy đủ để có tên hiển thị ổn định
+    let nameFromUser;
+    try {
+      const userDoc = await User.findById(userId).lean();
+      if (userDoc) {
+        nameFromUser =
+          userDoc.username ||
+          userDoc.name ||
+          (userDoc.email ? userDoc.email.split("@")[0] : undefined);
+      }
+    } catch (lookupErr) {
+      console.error("[addRecipeComment] Lỗi khi truy vấn User:", lookupErr.message || lookupErr);
+    }
 
     await axios.post(`${productBase}/api/recipes/${req.params.id}/comments`, {
       content,

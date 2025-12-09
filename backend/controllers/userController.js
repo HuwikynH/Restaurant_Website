@@ -27,19 +27,20 @@ const register = async (req, res) => {
     });
     await newUser.save();
 
-    try {
-      await sendVerificationEmail(newUser.email, newUser.verificationToken);
-    } catch (emailError) {
-      console.error("[Register] Lỗi gửi email xác thực:", emailError.message || emailError);
-      // Nếu gửi email lỗi, xóa user để tránh tài khoản không xác thực treo trong DB
-      await User.findByIdAndDelete(newUser._id);
-      // Ném lỗi ra ngoài để trả về 500 cho frontend
-      throw emailError;
-    }
-
+    // Trả về cho client ngay lập tức, không chờ gửi email để tránh treo request trên cloud
     res.status(201).json({
       msg: "Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác thực tài khoản.",
     });
+
+    // Gửi email xác thực bất đồng bộ (fire-and-forget)
+    sendVerificationEmail(newUser.email, newUser.verificationToken).catch(
+      (emailError) => {
+        console.error(
+          "[Register] Lỗi gửi email xác thực (không ảnh hưởng response):",
+          emailError.message || emailError
+        );
+      }
+    );
   } catch (err) {
     console.error("[Register] Lỗi đăng ký:", err.message || err);
     res.status(500).json({ msg: "Lỗi server", error: err.message || String(err) });
