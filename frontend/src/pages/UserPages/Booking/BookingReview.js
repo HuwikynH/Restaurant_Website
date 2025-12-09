@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StepHeader = ({ currentStep, onStepClick }) => {
@@ -84,7 +87,7 @@ const BookingReview = () => {
 
     const fetchBooking = async () => {
         try {
-            const res = await fetch(`http://localhost:8003/api/bookings/${bookingId}`);
+            const res = await fetch(`${ORDER_API_URL}/api/bookings/${bookingId}`);
             const data = await res.json();
             if (!res.ok || !data.success) {
                 throw new Error(data.message || "Không lấy được thông tin đặt bàn");

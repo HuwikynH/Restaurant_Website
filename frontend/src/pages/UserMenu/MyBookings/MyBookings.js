@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
+
 const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,7 +19,7 @@ const MyBookings = () => {
             }
 
             const res = await fetch(
-                `http://localhost:8003/api/bookings/user/${userId}`
+                `${ORDER_API_URL}/api/bookings/user/${userId}`
             );
             const data = await res.json();
             if (!res.ok || !data.success) {
@@ -50,7 +53,7 @@ const MyBookings = () => {
         try {
             setCancellingId(booking._id);
             const res = await fetch(
-                `http://localhost:8003/api/bookings/${booking._id}/request-cancel`,
+                `${ORDER_API_URL}/api/bookings/${booking._id}/request-cancel`,
                 {
                     method: "POST",
                 }

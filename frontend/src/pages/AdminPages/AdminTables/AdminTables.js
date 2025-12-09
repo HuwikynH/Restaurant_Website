@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
+
 // Tạm thời dùng cùng dữ liệu mock như Booking cho admin quan sát sơ đồ
 const branches = [
     {
@@ -80,7 +83,7 @@ const AdminTables = () => {
         const fetchBookings = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("http://localhost:8003/api/bookings");
+                const res = await fetch(`${ORDER_API_URL}/api/bookings`);
                 const data = await res.json();
                 if (!res.ok || !data.success) {
                     throw new Error(data.message || "Không lấy được danh sách đặt bàn");
@@ -101,7 +104,7 @@ const AdminTables = () => {
             try {
                 if (!selectedBranchId) return;
                 const res = await fetch(
-                    `http://localhost:8003/api/tables?branchId=${selectedBranchId}`
+                    `${ORDER_API_URL}/api/tables?branchId=${selectedBranchId}`
                 );
                 const data = await res.json();
                 if (!res.ok || !data.success) {

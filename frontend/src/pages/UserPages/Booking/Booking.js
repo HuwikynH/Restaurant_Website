@@ -143,7 +143,7 @@ const Booking = () => {
                 if (!selectedBranch) return;
                 setLoadingTables(true);
                 const res = await fetch(
-                    `http://localhost:8003/api/tables?branchId=${selectedBranch.id}`
+                    `${ORDER_API_URL}/api/tables?branchId=${selectedBranch.id}`
                 );
                 const data = await res.json();
                 if (!res.ok || !data.success) {
@@ -165,7 +165,7 @@ const Booking = () => {
             try {
                 if (!selectedBranch || !selectedDate || !selectedTime) return;
                 setLoadingBookings(true);
-                const res = await fetch("http://localhost:8003/api/bookings");
+                const res = await fetch(`${ORDER_API_URL}/api/bookings`);
                 const data = await res.json();
                 if (!res.ok || !data.success) {
                     throw new Error(data.message || "Không lấy được danh sách đặt bàn");
@@ -264,7 +264,7 @@ const Booking = () => {
                 .map((t) => `${t.floorName} - ${t.code} (${t.capacity} người)`)
                 .join(", ");
 
-            const res = await fetch("http://localhost:8003/api/bookings", {
+            const res = await fetch(`${ORDER_API_URL}/api/bookings`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

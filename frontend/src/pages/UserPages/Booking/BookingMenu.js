@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import RecipeGrid from "../../../components/RecipeGrid/RecipeGrid";
 import axios from "axios";
+
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
+const CART_API_URL =
+    process.env.REACT_APP_CART_API_URL || "http://localhost:8002";
 
 const StepHeader = ({ currentStep, onStepClick }) => {
     const steps = [
@@ -90,7 +95,7 @@ const BookingMenu = () => {
     const fetchCart = async () => {
         try {
             setLoadingCart(true);
-            const res = await fetch(`http://localhost:8002/api/cart/${bookingId}`);
+            const res = await fetch(`${CART_API_URL}/api/cart/${bookingId}`);
             const data = await res.json();
             if (!res.ok || !data.success) {
                 throw new Error(data.message || "Không tải được giỏ món");
@@ -171,7 +176,7 @@ const BookingMenu = () => {
             const user = JSON.parse(localStorage.getItem("user"));
             const userId = user?._id || "test-user-1";
 
-            const res = await fetch(`http://localhost:8002/api/cart/${bookingId}/items`, {
+            const res = await fetch(`${CART_API_URL}/api/cart/${bookingId}/items`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -308,7 +313,7 @@ const BookingMenu = () => {
             }
 
             const res = await fetch(
-                `http://localhost:8003/api/bookings/${bookingId}/confirm-menu`,
+                `${ORDER_API_URL}/api/bookings/${bookingId}/confirm-menu`,
                 {
                     method: "POST",
                 }

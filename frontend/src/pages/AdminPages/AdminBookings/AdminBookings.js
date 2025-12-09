@@ -1,5 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
 
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
+const PAYMENT_API_URL =
+    process.env.REACT_APP_PAYMENT_API_URL || "http://localhost:8004";
+
 const AdminBookings = () => {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -11,7 +16,7 @@ const AdminBookings = () => {
     const fetchAllBookings = async () => {
         try {
             setLoading(true);
-            const res = await fetch("http://localhost:8003/api/bookings");
+            const res = await fetch(`${ORDER_API_URL}/api/bookings`);
             const data = await res.json();
             if (!res.ok || !data.success) {
                 throw new Error(data.message || "Không lấy được danh sách đặt bàn");
@@ -65,7 +70,7 @@ const AdminBookings = () => {
     const handleMarkPaid = async (bookingId) => {
         try {
             setUpdatingId(bookingId);
-            const res = await fetch("http://localhost:8004/api/payments", {
+            const res = await fetch(`${PAYMENT_API_URL}/api/payments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -92,7 +97,7 @@ const AdminBookings = () => {
         try {
             setUpdatingId(bookingId);
             const res = await fetch(
-                `http://localhost:8003/api/bookings/${bookingId}`,
+                `${ORDER_API_URL}/api/bookings/${bookingId}`,
                 {
                     method: "DELETE",
                 }
