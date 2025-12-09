@@ -2,6 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+const ORDER_API_URL =
+    process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
+
 const branches = [
     {
         id: "branch-q1",

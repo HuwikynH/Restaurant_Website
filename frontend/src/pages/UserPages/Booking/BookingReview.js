@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ORDER_API_URL =
     process.env.REACT_APP_ORDER_API_URL || "http://localhost:8003";
-import { useNavigate, useParams } from "react-router-dom";
+const PAYMENT_API_URL =
+    process.env.REACT_APP_PAYMENT_API_URL || "http://localhost:8004";
 
 const StepHeader = ({ currentStep, onStepClick }) => {
     const steps = [
@@ -148,7 +150,7 @@ const BookingReview = () => {
         if (!bookingId || paying) return;
         try {
             setPaying(true);
-            const res = await fetch("http://localhost:8004/api/payments", {
+            const res = await fetch(`${PAYMENT_API_URL}/api/payments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
