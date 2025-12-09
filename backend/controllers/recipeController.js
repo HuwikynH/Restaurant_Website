@@ -196,11 +196,16 @@ const addRecipeComment = async (req, res) => {
     }
 
     const userId = req.user._id || req.user.id;
+    const nameFromUser =
+      req.user.username ||
+      req.user.name ||
+      (req.user.email ? req.user.email.split("@")[0] : undefined);
 
     await axios.post(`${productBase}/api/recipes/${req.params.id}/comments`, {
       content,
       rating,
       userId,
+      name: nameFromUser,
     });
 
     return res.status(201).json({ msg: "Đã thêm bình luận thành công" });

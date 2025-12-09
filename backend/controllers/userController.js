@@ -30,9 +30,10 @@ const register = async (req, res) => {
     try {
       await sendVerificationEmail(newUser.email, newUser.verificationToken);
     } catch (emailError) {
-      // If email sending fails, delete the created user
+      console.error("[Register] Lỗi gửi email xác thực:", emailError.message || emailError);
+      // Nếu gửi email lỗi, xóa user để tránh tài khoản không xác thực treo trong DB
       await User.findByIdAndDelete(newUser._id);
-      // Re-throw the error to be caught by the outer catch block
+      // Ném lỗi ra ngoài để trả về 500 cho frontend
       throw emailError;
     }
 
@@ -40,7 +41,8 @@ const register = async (req, res) => {
       msg: "Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác thực tài khoản.",
     });
   } catch (err) {
-    res.status(500).json({ msg: "Lỗi server", error: err });
+    console.error("[Register] Lỗi đăng ký:", err.message || err);
+    res.status(500).json({ msg: "Lỗi server", error: err.message || String(err) });
   }
 };
 

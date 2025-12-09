@@ -1,15 +1,27 @@
 const nodemailer = require("nodemailer");
 
+// Sử dụng cấu hình SMTP chuẩn cho Gmail để chạy ổn định trên cloud
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // dùng STARTTLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    // tránh lỗi chứng chỉ tự ký trên một số môi trường cloud
+    rejectUnauthorized: false,
+  },
 });
 
 const sendVerificationEmail = async (email, token) => {
-  const url = `${process.env.BASE_URL}/api/users/verify-email?token=${token}`;
+  console.log("[Email] Đang gửi email xác thực tới", email);
+  const baseUrl = process.env.BASE_URL || "http://localhost:5000";
+  const url = `${baseUrl}/api/users/verify-email?token=${token}`;
+
+  console.log("[Email] URL xác thực:", url);
+  console.log("[Email] Đang gửi email xác thực tới", email, "với URL:", url);
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
@@ -17,6 +29,8 @@ const sendVerificationEmail = async (email, token) => {
     subject: "Xác thực Email của bạn",
     html: `<p>Vui lòng nhấp vào liên kết sau để xác thực email của bạn: <a href="${url}">${url}</a></p>`,
   });
+
+  console.log("[Email] Đã gửi email xác thực tới", email);
 };
 
 const sendContactNotificationEmail = async ({

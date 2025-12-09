@@ -327,7 +327,8 @@ const getRecipeComments = async (req, res) => {
 // @route   POST /api/recipes/:id/comments
 const addRecipeComment = async (req, res) => {
     try {
-        const { content, rating } = req.body;
+        const { content, rating, name } = req.body;
+
         if (!content)
             return res
                 .status(400)
@@ -344,6 +345,10 @@ const addRecipeComment = async (req, res) => {
             req.query.userId;
 
         const comment = { user: userId, content };
+        if (name) {
+            comment.name = name;
+        }
+
         if (typeof rating === "number" && rating >= 1 && rating <= 5) {
             comment.rating = rating;
         }
