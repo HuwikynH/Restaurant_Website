@@ -3,6 +3,10 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
 
+// Base URL of backend (e.g., https://restaurant-backend-t8e3.onrender.com)
+// This ensures OAuth providers see the correct HTTPS redirect_uri in production
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
+
 module.exports = (passport) => {
   passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -23,7 +27,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "/auth/facebook/callback",
+        callbackURL: `${BASE_URL}/auth/facebook/callback`,
         profileFields: ["id", "emails", "name"],
       },
       async (accessToken, refreshToken, profile, done) => {
@@ -63,7 +67,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback",
+        callbackURL: `${BASE_URL}/auth/google/callback`,
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
