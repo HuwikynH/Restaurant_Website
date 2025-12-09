@@ -333,7 +333,7 @@ const AdminBookings = () => {
                                                             try {
                                                                 setUpdatingId(b._id);
                                                                 const res = await fetch(
-                                                                    `http://localhost:8003/api/bookings/${b._id}/cancel`,
+                                                                    `${ORDER_API_URL}/api/bookings/${b._id}/cancel`,
                                                                     { method: "PATCH" }
                                                                 );
                                                                 const data = await res.json();

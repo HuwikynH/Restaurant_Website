@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+const PAYMENT_API_URL =
+    process.env.REACT_APP_PAYMENT_API_URL || "http://localhost:8004";
 import { useNavigate } from "react-router-dom";
 
 const PaymentResult = () => {
@@ -49,7 +52,7 @@ const PaymentResult = () => {
 
         const confirmPayment = async () => {
             try {
-                const res = await fetch("http://localhost:8004/api/payments/complete", {
+                const res = await fetch(`${PAYMENT_API_URL}/api/payments/complete`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

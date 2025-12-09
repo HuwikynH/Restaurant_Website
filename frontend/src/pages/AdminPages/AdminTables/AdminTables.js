@@ -182,7 +182,7 @@ const AdminTables = () => {
         try {
             if (!selectedBranchId) return;
             const res = await fetch(
-                `http://localhost:8003/api/tables?branchId=${selectedBranchId}`
+                `${ORDER_API_URL}/api/tables?branchId=${selectedBranchId}`
             );
             const data = await res.json();
             if (!res.ok || !data.success) {
@@ -226,8 +226,8 @@ const AdminTables = () => {
             );
 
             const url = existing
-                ? `http://localhost:8003/api/tables/${existing._id}`
-                : "http://localhost:8003/api/tables";
+                ? `${ORDER_API_URL}/api/tables/${existing._id}`
+                : `${ORDER_API_URL}/api/tables`;
             const method = existing ? "PUT" : "POST";
 
             const res = await fetch(url, {
@@ -268,7 +268,7 @@ const AdminTables = () => {
         try {
             setDeletingTableId(table._id);
             const res = await fetch(
-                `http://localhost:8003/api/tables/${table._id}`,
+                `${ORDER_API_URL}/api/tables/${table._id}`,
                 {
                     method: "DELETE",
                 }

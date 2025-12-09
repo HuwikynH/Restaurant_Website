@@ -276,7 +276,7 @@ const BookingMenu = () => {
                 return;
             }
 
-            const res = await fetch(`http://localhost:8002/api/cart/${bookingId}/items`, {
+            const res = await fetch(`${CART_API_URL}/api/cart/${bookingId}/items`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

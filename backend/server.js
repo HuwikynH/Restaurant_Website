@@ -5,7 +5,8 @@ const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
 const configurePassport = require("./config/passport"); // Import hàm cấu hình
-const CLIENT_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+const CLIENT_URL =
+    process.env.CLIENT_URL || process.env.FRONTEND_URL || "http://localhost:3000";
 
 // Load env vars
 dotenv.config();

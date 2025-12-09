@@ -1,7 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+const CLIENT_URL =
+  process.env.CLIENT_URL || process.env.FRONTEND_URL || "http://localhost:3000";
 
 // Facebook routes
 router.get(

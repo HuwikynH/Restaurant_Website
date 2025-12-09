@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+const PAYMENT_API_URL =
+    process.env.REACT_APP_PAYMENT_API_URL || "http://localhost:8004";
 import { useNavigate } from "react-router-dom";
 
 const UserPaymentHistory = () => {
@@ -28,7 +31,7 @@ const UserPaymentHistory = () => {
         const fetchPayments = async () => {
             try {
                 const res = await fetch(
-                    `http://localhost:8004/api/payments/user/${userId}`
+                    `${PAYMENT_API_URL}/api/payments/user/${userId}`
                 );
                 const data = await res.json();
                 if (!res.ok || !data.success) {
