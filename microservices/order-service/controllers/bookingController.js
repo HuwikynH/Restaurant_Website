@@ -1,5 +1,6 @@
 const Booking = require("../models/Booking");
 const axios = require("axios");
+const { publishBookingCreated } = require("../rabbitmq");
 
 // POST /api/bookings
 const createBooking = async (req, res) => {
@@ -36,6 +37,9 @@ const createBooking = async (req, res) => {
             branchName,
             tables: Array.isArray(tables) ? tables : [],
         });
+
+        // Gửi sự kiện booking.created lên message broker (nếu RABBITMQ_URL được cấu hình)
+        publishBookingCreated(booking);
 
         return res.status(201).json({ success: true, data: booking });
     } catch (error) {

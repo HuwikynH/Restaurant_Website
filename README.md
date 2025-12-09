@@ -96,6 +96,27 @@ Hệ thống được tổ chức theo mô hình **microservices**, frontend gia
   - Quản lý: công thức (recipes), danh mục (categories), đánh giá/bình luận, yêu thích.
   - Database: `Restaurant_products`.
 
+#### Phân loại "sản phẩm" trong hệ thống
+
+Trong hệ thống, “sản phẩm” được hiểu theo nghĩa rộng là **các dịch vụ mà nhà hàng cung cấp**:
+
+- **Dịch vụ chỗ ngồi** (bàn, phòng VIP…)
+  - Có **giá tối thiểu** (`minPrice` / `basePrice`).
+  - Được **quản lý theo thời gian thực** khi đặt bàn: giữ chỗ 15 phút, huỷ nếu quá hạn, cập nhật trạng thái bàn.
+
+- **Dịch vụ ăn uống** (món, combo, set menu…)
+  - Được lưu trong `product-service` dưới dạng `recipes`, `categories`, được dùng cho nhiều chức năng: trang công thức, blog, yêu thích, gợi ý món.
+
+Về triển khai:
+
+- **Món ăn** nằm trong **product-service** vì đây là **danh mục sản phẩm ăn uống** dùng lại ở nhiều nơi (recipes, blog, favorite...).
+- **Bàn** nằm trong **order-service** vì gắn chặt với **quy trình đặt bàn**:
+  - Giữ chỗ 15 phút.
+  - Job tự huỷ booking quá hạn và trả bàn.
+  - Cập nhật trạng thái booking (`PENDING_PAYMENT`, `PAID`, `CANCELLED`, `EXPIRED`) và trạng thái bàn.
+
+Nhờ tách như vậy, logic **đặt bàn & giữ bàn** chỉ tập trung ở `order-service`; nếu sau này thay đổi quy tắc giữ bàn (thời gian giữ, cách tính basePrice, v.v.), chỉ cần chỉnh ở `order-service` mà không ảnh hưởng tới phần **catalog món ăn** trong `product-service`.
+
 - **Cart-service**
   - Lưu tạm giỏ món của từng booking: `bookingId`, `userId`, `items[]`.
   - Database: `Restaurant_carts`.

@@ -3,17 +3,21 @@ import "./RecipeGrid.css";
 
 import RecipeCard from "../RecipeCard/RecipeCard";
 
-function RecipeGrid({ recipeList, disableFavorite = false }) {
+function RecipeGrid({ recipeList, disableFavorite = false, large = false }) {
     // console.log("recipeList", recipeList);
 
     if (!Array.isArray(recipeList) || recipeList.length === 0) {
         return <div>Không có dữ liệu để hiển thị</div>;
     }
 
+    const rowClassName = large
+        ? "row row-cols-1 row-cols-md-2 g-4" // ít cột hơn, card to hơn
+        : "row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4";
+
     return (
         <div className="recipe-grid-wrapper">
             <div className="card-container">
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                <div className={rowClassName}>
                     {recipeList.map((recipe) =>
                         recipe && recipe._id ? (
                             <RecipeCard
@@ -28,6 +32,7 @@ function RecipeGrid({ recipeList, disableFavorite = false }) {
                                 link={`/recipes/${recipe._id}`}
                                 onAdd={recipe.onAdd}
                                 disableFavorite={disableFavorite}
+                                large={large}
                             />
                         ) : null
                     )}

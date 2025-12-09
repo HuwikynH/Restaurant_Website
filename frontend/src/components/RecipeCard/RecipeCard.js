@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "../../utils/axios";
 import { toast } from "react-toastify";
 
-function RecipeCard({ image, name, link, views, id, price, rating = 5, ratingCount = 0, onAdd, disableFavorite = false }) {
+function RecipeCard({ image, name, link, views, id, price, rating = 5, ratingCount = 0, onAdd, disableFavorite = false, large = false }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,8 +60,10 @@ function RecipeCard({ image, name, link, views, id, price, rating = 5, ratingCou
     }
   };
 
+  const cardClassName = large ? "recipe-card recipe-card-large" : "recipe-card";
+
   return (
-    <div className="recipe-card">
+    <div className={cardClassName}>
       <div className="col">
         <Link className="card-link" to={link}>
           <div className="card">

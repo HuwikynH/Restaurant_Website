@@ -18,6 +18,17 @@
     will-change: transform;
 }
 
+/* Card lớn dùng cho Set menu / Combo trong bước đặt bàn */
+.recipe-card-large .card {
+    min-height: 360px;
+}
+
+.recipe-card-large img {
+    height: 260px;
+    object-fit: contain; /* cố gắng hiển thị đầy đủ ảnh menu/combo */
+    background-color: #fff8f0;
+}
+
 .recipe-card .card-body {
     min-height: 120px;
     display: flex;

@@ -139,6 +139,22 @@ const BookingMenu = () => {
                 const cats = Array.isArray(res.data) ? res.data : res.data.data || [];
 
                 setCategories(cats);
+
+                // Nếu có danh mục Set menu / Combo thì chọn mặc định khi vào bước này
+                const comboCat = cats.find((cat) => {
+                    const displayName = (cat.displayName || "").toLowerCase();
+                    const name = (cat.name || "").toLowerCase();
+                    return (
+                        displayName.includes("set menu") ||
+                        displayName.includes("combo") ||
+                        name.includes("set menu") ||
+                        name.includes("combo")
+                    );
+                });
+
+                if (comboCat) {
+                    setSelectedCategoryName(comboCat.name);
+                }
             } catch (error) {
                 console.error("Lỗi load danh mục:", error);
             }
@@ -185,6 +201,31 @@ const BookingMenu = () => {
         return <div className="container my-5">Đang tải menu...</div>;
     }
 
+    // Tìm danh mục dành riêng cho Set menu / Combo (đã tạo sẵn trong admin)
+    const comboCategory = categories.find((cat) => {
+        const displayName = (cat.displayName || "").toLowerCase();
+        const name = (cat.name || "").toLowerCase();
+        return (
+            displayName.includes("set menu") ||
+            displayName.includes("combo") ||
+            name.includes("set menu") ||
+            name.includes("combo")
+        );
+    });
+
+    // Helper: lấy id category từ recipe (có thể là string hoặc object)
+    const getRecipeCategoryId = (recipe) => {
+        if (!recipe || !recipe.category) return null;
+        if (typeof recipe.category === "string") return recipe.category;
+        if (typeof recipe.category === "object") return recipe.category._id || null;
+        return null;
+    };
+
+    // Danh sách công thức thuộc danh mục Set menu / Combo để show slide lớn
+    const comboRecipes = comboCategory
+        ? recipes.filter((r) => getRecipeCategoryId(r) === comboCategory._id)
+        : [];
+
     let filteredRecipes = recipes;
     if (selectedCategoryName !== "ALL") {
         const selectedCategory = categories.find(
@@ -192,7 +233,7 @@ const BookingMenu = () => {
         );
         if (selectedCategory) {
             filteredRecipes = recipes.filter(
-                (r) => r.category === selectedCategory._id
+                (r) => getRecipeCategoryId(r) === selectedCategory._id
             );
         }
     }
@@ -339,7 +380,11 @@ const BookingMenu = () => {
 
             <div className="row">
                 <div className="col-lg-8">
-                    <RecipeGrid recipeList={enhancedRecipes} disableFavorite />
+                    <RecipeGrid
+                        recipeList={enhancedRecipes}
+                        disableFavorite
+                        large={comboCategory && selectedCategoryName === comboCategory.name}
+                    />
                 </div>
                 <div className="col-lg-4 mt-4 mt-lg-0">
                     <h4>Giỏ món của bàn</h4>

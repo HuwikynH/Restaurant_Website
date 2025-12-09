@@ -21,6 +21,18 @@ const app = express();
 // Body parser
 app.use(express.json());
 
+// Simple request logging
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on("finish", () => {
+        const duration = Date.now() - start;
+        console.log(
+            `[backend] ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`
+        );
+    });
+    next();
+});
+
 // Enable CORS
 app.use(
     cors({
@@ -68,6 +80,16 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/cloudinary", cloudinaryRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/blogreviews", blogReviewRoutes);
+
+// Health check
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+        service: "backend",
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString(),
+    });
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -12,6 +12,18 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
+// Simple request logging
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on("finish", () => {
+        const duration = Date.now() - start;
+        console.log(
+            `[order-service] ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`
+        );
+    });
+    next();
+});
+
 const bookingRoutes = require("./routes/bookingRoutes");
 const tableRoutes = require("./routes/tableRoutes");
 const Table = require("./models/Table");
@@ -19,6 +31,16 @@ const Booking = require("./models/Booking");
 
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/tables", tableRoutes);
+
+// Health check
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+        service: "order-service",
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString(),
+    });
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
